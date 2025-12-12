@@ -39,7 +39,7 @@ export default function MentorSection() {
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-2xl font-bold text-gray-900 mb-2"> React Native Developer</h3>
               <p className="text-gray-600 mb-4">
-                Built over 4 production apps , assionate about teaching and helping developers 
+                Built over 4 production apps , passionate about teaching and helping developers 
                 level up their skills through practical, hands-on mentorship.
               </p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
