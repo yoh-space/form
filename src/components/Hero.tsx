@@ -66,20 +66,6 @@ export default function Hero() {
             </svg>
           </a>
         </div>
-
-        {/* Stats */}
-        <div className={`mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto transition-all duration-700 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          {[
-            { value: "ONLY 15", label: "Students" },
-            { value: "24", label: "Weeks" },
-            { value: "ACTIVE", label: "Mentoring" }
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{stat.value}</div>
-              <div className="text-sm text-gray-500">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -17,59 +17,61 @@ export default function MentorSection() {
 
   return (
     <section ref={ref} className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Your Mentor</h2>
-          <p className="text-gray-600">Experienced developer ready to guide your journey</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Become a Professional Mobile App Developer in 6 Months</h2>
+          <p className="text-xl text-gray-600 mb-2">An exclusive, intensive mentorship program.</p>
+          <p className="text-lg text-gray-600">Learn React Native, publish your app, and start earning.</p>
+          <h3 className="text-2xl font-semibold text-blue-600 mt-6">React Native Mobile App Development Mentorship</h3>
+          <p className="text-red-600 font-medium">(Limited to 15 Students)</p>
         </div>
 
-        <div className={`bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* 3D Avatar */}
-            <div className="relative" style={{ perspective: '500px' }}>
-              <div className="w-32 h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-5xl font-bold shadow-2xl transform hover:rotate-y-12 transition-transform duration-500" style={{ transformStyle: 'preserve-3d' }}>
-                <img src={'yoh.jpg'}>
-                </img>
+        {/* Key Learning Outcomes */}
+        <div className={`bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 mb-12 transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">What You'll Learn</h4>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              "Build & publish a real app on the Google Play Store.",
+              "Master Expo, Dev Build, and Bare Workflow.",
+              "Learn Next.js fundamentals for web development.",
+              "Integrate AI tools to accelerate development.",
+              "Discover app monetization strategies.",
+              "Learn vulnerability scanning for mobile & web apps.",
+              "Compete for rewards as a top performer."
+            ].map((outcome, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <span className="text-green-500 text-xl">✅</span>
+                <p className="text-gray-700">{outcome}</p>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white shadow-lg animate-bounce-slow">
-                ✓
-              </div>
-            </div>
-
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2"> React Native Developer</h3>
-              <p className="text-gray-600 mb-4">
-                Built over 4 production apps , passionate about teaching and helping developers 
-                level up their skills through practical, hands-on mentorship.
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {["React Native", "TypeScript", "Node.js", "Firebase", "JSX"].map(skill => (
-                  <span key={skill} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-default">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mt-12">
-          {[
-            { icon: "🎯", title: "Personalized Path", desc: "Curriculum tailored to your goals" },
-            { icon: "💻", title: "Real Projects", desc: "Build apps you can showcase" },
-            { icon: "🚀", title: "Career Ready", desc: "Job-ready skills & portfolio" }
-          ].map((feature, i) => (
-            <div 
-              key={i}
-              className={`bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 cursor-default ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{ transitionDelay: `${300 + i * 100}ms` }}
-            >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h4 className="font-semibold text-gray-900 mb-2">{feature.title}</h4>
-              <p className="text-gray-600 text-sm">{feature.desc}</p>
+        {/* Program Details */}
+        <div className={`bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 transition-all duration-700 delay-400 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h4 className="text-2xl font-bold text-gray-900 mb-6 text-center">Program Details</h4>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-gray-900">Duration:</h5>
+                <p className="text-gray-700">6 Months</p>
+              </div>
+              <div>
+                <h5 className="font-semibold text-gray-900">Format:</h5>
+                <p className="text-gray-700">Live Online Sessions + Hands-on Projects</p>
+              </div>
             </div>
-          ))}
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-gray-900">Support:</h5>
+                <p className="text-gray-700">Zoom & Telegram Group</p>
+              </div>
+              <div>
+                <h5 className="font-semibold text-gray-900">Seats:</h5>
+                <p className="text-red-600 font-semibold">15 Students Only</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
