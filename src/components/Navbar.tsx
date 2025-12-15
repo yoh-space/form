@@ -10,9 +10,14 @@ export default function Navbar() {
           </div>
           <span className="font-semibold text-lg text-gray-800">Yo-Tech Solution</span>
         </a>
-        <a href="#enroll" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5">
-          Enroll Now
-        </a>
+        <div className="flex items-center gap-4">
+          <a href="/syllabus" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+            Syllabus
+          </a>
+          <a href="#enroll" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5">
+            Enroll Now
+          </a>
+        </div>
       </div>
     </nav>
   );

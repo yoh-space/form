@@ -38,3 +38,35 @@ export const getAll = query({
     return await ctx.db.query("enrollments").order("desc").collect();
   },
 });
+
+export const verifyEnrollment = query({
+  args: {
+    identifier: v.string(), // telegram username or phone number
+  },
+  handler: async (ctx, args) => {
+    const enrollment = await ctx.db
+      .query("enrollments")
+      .filter((q) => 
+        q.or(
+          q.eq(q.field("telegramUsername"), args.identifier),
+          q.eq(q.field("phoneNumber"), args.identifier)
+        )
+      )
+      .first();
+    
+    if (enrollment) {
+      return {
+        verified: true,
+        student: {
+          fullName: enrollment.fullName,
+          email: enrollment.email,
+          mentorshipFocus: enrollment.mentorshipFocus,
+          weeklyHours: enrollment.weeklyHours,
+          submittedAt: enrollment.submittedAt,
+        }
+      };
+    }
+    
+    return { verified: false };
+  },
+});

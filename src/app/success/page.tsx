@@ -38,6 +38,13 @@ export default function Success() {
             
             <div className="space-y-3">
               <Link 
+                href="/syllabus"
+                className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:-translate-y-1"
+              >
+                View Course Syllabus
+              </Link>
+              
+              <Link 
                 href="/"
                 className="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1"
               >
