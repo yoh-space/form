@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronDown, Compass, Blocks, Brain, Wrench, Zap, TrendingUp, Video, FileText, Eye, MessageSquare, CheckCircle2, Award, Rocket, Target, Calendar } from "lucide-react";
 
 const phases = [
@@ -192,10 +193,25 @@ const monthlyOutcomes = [
 ];
 
 export default function Syllabus() {
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
+  const [verified, setVerified] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const isVerified = localStorage.getItem("studentVerified");
+    if (!isVerified) {
+      router.push("/verify");
+    } else {
+      setVerified(true);
+      setLoading(false);
+      setMounted(true);
+    }
+  }, [router]);
+
+  if (loading) return null;
+  if (!verified) return null;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white">
@@ -213,9 +229,16 @@ export default function Syllabus() {
             <a href="https://yotech.space" target="_blank" rel="noopener" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
               About
             </a>
-            <Link href="/" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
-              Enroll
-            </Link>
+            <button
+              onClick={() => {
+                localStorage.removeItem("studentVerified");
+                localStorage.removeItem("studentContact");
+                router.push("/verify");
+              }}
+              className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </nav>
