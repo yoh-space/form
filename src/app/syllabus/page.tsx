@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import { ChevronDown, Compass, Blocks, Brain, Wrench, Zap, TrendingUp, Video, FileText, Eye, MessageSquare, CheckCircle2, Award, Rocket, Target, Calendar } from "lucide-react";
 
 const phases = [
@@ -194,46 +195,37 @@ const monthlyOutcomes = [
 
 export default function Syllabus() {
   const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
   const [mounted, setMounted] = useState(false);
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
-  const [verified, setVerified] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const isVerified = localStorage.getItem("studentVerified");
-    if (!isVerified) {
-      router.push("/verify");
-    } else {
-      setVerified(true);
-      setLoading(false);
+    if (!isPending && !session) {
+      router.push("/auth/signin");
+    } else if (session) {
       setMounted(true);
     }
-  }, [router]);
+  }, [session, isPending, router]);
 
-  if (loading) return null;
-  if (!verified) return null;
+  if (isPending || !session) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white">
       {/* Navigation Header */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors">
+          <Link href="/dashboard" className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors">
             <Rocket className="w-6 h-6 text-blue-600" />
-            Yo-Tech
+            Yo-Tech Dashboard
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-              Home
+            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Dashboard
             </Link>
-            <a href="https://yotech.space" target="_blank" rel="noopener" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-              About
-            </a>
             <button
-              onClick={() => {
-                localStorage.removeItem("studentVerified");
-                localStorage.removeItem("studentContact");
-                router.push("/verify");
+              onClick={async () => {
+                await authClient.signOut();
+                router.push("/auth/signin");
               }}
               className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
             >
@@ -254,25 +246,11 @@ export default function Syllabus() {
           <div className={`transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 flex items-center gap-3">
               <Rocket className="w-10 h-10 text-blue-600" />
-              React Native Mentorship
+              Detailed Roadmap
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl">
-              A 6-month journey to build real apps, master modern development, and launch your career.
+              Your 6-month journey to build real apps, master modern development, and launch your career.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-gray-700">
-                <Calendar className="w-5 h-5 text-blue-600" />
-                <span className="font-medium">6 Months</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Video className="w-5 h-5 text-blue-600" />
-                <span className="font-medium">Live Sessions + Hands-on</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Target className="w-5 h-5 text-blue-600" />
-                <span className="font-medium">Build Your Own App</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -292,7 +270,7 @@ export default function Syllabus() {
           <Compass className="w-8 h-8 text-blue-600" />
           Learning Phases
         </h2>
-        
+
         <div className="space-y-6">
           {phases.map((phase, idx) => (
             <div
@@ -369,7 +347,7 @@ export default function Syllabus() {
         <h2 className="text-3xl font-bold text-gray-900 mb-12 flex items-center gap-3">
           <Calendar className="w-8 h-8 text-blue-600" /> Monthly Outcomes Map
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {monthlyOutcomes.map((outcome, idx) => (
             <div
@@ -401,7 +379,7 @@ export default function Syllabus() {
         <h2 className="text-3xl font-bold text-gray-900 mb-12 flex items-center gap-3">
           <Award className="w-8 h-8 text-blue-600" /> Mentorship Support System
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { Icon: Video, title: "Weekly Live Sessions", desc: "Interactive learning with real-time Q&A" },
@@ -446,29 +424,6 @@ export default function Syllabus() {
           <p className="text-lg font-semibold italic">
             You are not just learning code — you are building your future.
           </p>
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Start Your Journey?</h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/"
-              className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1"
-            >
-              Enroll Now
-            </Link>
-            <a
-              href="https://yotech.space"
-              target="_blank"
-              rel="noopener"
-              className="inline-block bg-gray-100 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300"
-            >
-              Learn More →
-            </a>
-          </div>
         </div>
       </div>
 

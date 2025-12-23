@@ -1,5 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { authComponent } from "./auth";
 
 export const submit = mutation({
   args: {
@@ -26,8 +27,11 @@ export const submit = mutation({
     paymentMethod: v.string(),
   },
   handler: async (ctx, args) => {
+    const user = await authComponent.getAuthUser(ctx);
+
     return await ctx.db.insert("enrollments", {
       ...args,
+      userId: user?._id,
       submittedAt: Date.now(),
     });
   },
@@ -46,14 +50,14 @@ export const verifyEnrollment = query({
   handler: async (ctx, args) => {
     const enrollment = await ctx.db
       .query("enrollments")
-      .filter((q) => 
+      .filter((q) =>
         q.or(
           q.eq(q.field("telegramUsername"), args.identifier),
           q.eq(q.field("phoneNumber"), args.identifier)
         )
       )
       .first();
-    
+
     if (enrollment) {
       return {
         verified: true,
@@ -66,7 +70,7 @@ export const verifyEnrollment = query({
         }
       };
     }
-    
+
     return { verified: false };
   },
 });

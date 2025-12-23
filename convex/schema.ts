@@ -34,5 +34,32 @@ export default defineSchema({
     paymentMethod: v.string(),
     // Meta
     submittedAt: v.number(),
+    // Link to user
+    userId: v.optional(v.string()),
   }),
+  syllabus: defineTable({
+    slug: v.string(),
+    title: v.string(),
+    description: v.optional(v.string()),
+    content: v.optional(v.string()), // Markdown
+    order: v.number(),
+    published: v.boolean(),
+    updatedAt: v.optional(v.number()),
+  }).index("by_slug", ["slug"]).index("by_order", ["order"]),
+  progress: defineTable({
+    userId: v.string(),
+    syllabusSlug: v.string(),
+    completed: v.boolean(),
+    percentComplete: v.number(),
+    lastUpdated: v.number(),
+  }).index("by_user_syllabus", ["userId", "syllabusSlug"]),
+  admin_posts: defineTable({
+    slug: v.string(),
+    title: v.string(),
+    body: v.string(),
+    tags: v.array(v.string()),
+    publishAt: v.number(),
+    createdBy: v.string(),
+    createdAt: v.number(),
+  }).index("by_slug", ["slug"]),
 });

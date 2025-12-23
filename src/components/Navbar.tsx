@@ -1,6 +1,13 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 export default function Navbar() {
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
+
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -11,9 +18,20 @@ export default function Navbar() {
           <span className="font-semibold text-lg text-gray-800">Yo-Tech Solution</span>
         </a>
         <div className="flex items-center gap-4">
-          <a href="/syllabus" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
-            Syllabus
-          </a>
+          {session ? (
+            <>
+              <Link href="/dashboard" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Dashboard
+              </Link>
+              <Link href="/syllabus" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Roadmap
+              </Link>
+            </>
+          ) : (
+            <Link href="/auth/signin" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+              Login
+            </Link>
+          )}
           <a href="#enroll" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5">
             Enroll Now
           </a>
