@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../../../convex/_generated/api";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import Editor from "@/components/editor/Editor";
 
 export default function EditSyllabus() {
     const params = useParams();
@@ -20,6 +21,7 @@ export default function EditSyllabus() {
         order: 0,
         published: false,
     });
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         if (syllabus) {
@@ -30,6 +32,7 @@ export default function EditSyllabus() {
                 order: syllabus.order,
                 published: syllabus.published,
             });
+            setIsLoaded(true);
         }
     }, [syllabus]);
 
@@ -80,13 +83,18 @@ export default function EditSyllabus() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Content (Markdown)</label>
-                    <textarea
-                        value={formData.content}
-                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 font-mono"
-                        rows={10}
-                    />
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                    {isLoaded ? (
+                        <Editor
+                            key={syllabus._id}
+                            initialState={formData.content}
+                            onChange={(jsonString) => setFormData({ ...formData, content: jsonString })}
+                        />
+                    ) : (
+                        <div className="border border-gray-300 rounded-lg p-4 min-h-[400px] flex items-center justify-center text-gray-400">
+                            Loading editor...
+                        </div>
+                    )}
                 </div>
                 <div className="flex items-center">
                     <input
@@ -109,3 +117,4 @@ export default function EditSyllabus() {
         </div>
     );
 }
+

@@ -4,6 +4,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Editor from "@/components/editor/Editor";
 
 export default function NewSyllabus() {
     const create = useMutation(api.syllabus.create);
@@ -68,12 +69,9 @@ export default function NewSyllabus() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Content (Markdown)</label>
-                    <textarea
-                        value={formData.content}
-                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 font-mono"
-                        rows={10}
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                    <Editor
+                        onChange={(jsonString) => setFormData({ ...formData, content: jsonString })}
                     />
                 </div>
                 <div className="flex items-center">

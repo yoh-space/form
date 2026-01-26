@@ -62,4 +62,14 @@ export default defineSchema({
     createdBy: v.string(),
     createdAt: v.number(),
   }).index("by_slug", ["slug"]),
+  activities: defineTable({
+    type: v.union(v.literal("biweekly"), v.literal("monthly")),
+    title: v.string(),
+    content: v.string(),
+    startDate: v.number(),
+    endDate: v.number(),
+    published: v.boolean(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_type", ["type"]).index("by_published", ["published"]),
 });

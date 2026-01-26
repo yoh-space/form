@@ -40,12 +40,18 @@ export const updateProgress = mutation({
 
 export const getUserProgress = query({
     handler: async (ctx) => {
-        const user = await authComponent.getAuthUser(ctx);
-        if (!user) return [];
+        try {
+            const user = await authComponent.getAuthUser(ctx);
+            if (!user) return [];
 
-        return await ctx.db
-            .query("progress")
-            .withIndex("by_user_syllabus", (q) => q.eq("userId", user._id))
-            .collect();
+            return await ctx.db
+                .query("progress")
+                .withIndex("by_user_syllabus", (q) => q.eq("userId", user._id))
+                .collect();
+        } catch (error) {
+            console.error("Error in getUserProgress:", error);
+            // Return empty progress on error to prevent crashing the UI
+            return [];
+        }
     },
 });
