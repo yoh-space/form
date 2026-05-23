@@ -106,8 +106,8 @@ export default function EditActivityPage() {
                             <Calendar className="w-6 h-6 text-emerald-600" />
                         </div>
                     ) : (
-                        <div className="p-2 bg-purple-100 rounded-lg">
-                            <CalendarDays className="w-6 h-6 text-purple-600" />
+                        <div className="p-2 bg-amber-100 rounded-lg">
+                            <CalendarDays className="w-6 h-6 text-amber-600" />
                         </div>
                     )}
                     <h1 className="text-2xl font-bold text-gray-900">
@@ -140,7 +140,7 @@ export default function EditActivityPage() {
                             </label>
                             <label
                                 className={`flex items-center gap-2 px-4 py-3 rounded-lg border cursor-pointer transition-colors ${formData.type === "monthly"
-                                        ? "border-purple-500 bg-purple-50"
+                                        ? "border-amber-500 bg-amber-50"
                                         : "border-gray-200 hover:border-gray-300"
                                     }`}
                             >
@@ -152,8 +152,8 @@ export default function EditActivityPage() {
                                     onChange={() => setFormData({ ...formData, type: "monthly" })}
                                     className="sr-only"
                                 />
-                                <CalendarDays className={`w-5 h-5 ${formData.type === "monthly" ? "text-purple-600" : "text-gray-400"}`} />
-                                <span className={formData.type === "monthly" ? "text-purple-700 font-medium" : "text-gray-600"}>
+                                <CalendarDays className={`w-5 h-5 ${formData.type === "monthly" ? "text-amber-600" : "text-gray-400"}`} />
+                                <span className={formData.type === "monthly" ? "text-amber-700 font-medium" : "text-gray-600"}>
                                     Monthly
                                 </span>
                             </label>
@@ -230,7 +230,7 @@ export default function EditActivityPage() {
                             disabled={isSubmitting}
                             className={`px-6 py-2 text-white rounded-lg font-medium transition-colors ${formData.type === "biweekly"
                                     ? "bg-emerald-600 hover:bg-emerald-700"
-                                    : "bg-purple-600 hover:bg-purple-700"
+                                    : "bg-amber-600 hover:bg-amber-700"
                                 } disabled:opacity-50 disabled:cursor-not-allowed`}
                         >
                             {isSubmitting ? "Saving..." : "Save Changes"}

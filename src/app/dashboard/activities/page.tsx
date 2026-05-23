@@ -138,7 +138,7 @@ export default function ActivitiesPage() {
                 <button
                     onClick={() => setActiveTab("monthly")}
                     className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${activeTab === "monthly"
-                            ? "bg-purple-100 text-purple-700 shadow-sm"
+                            ? "bg-amber-100 text-amber-700 shadow-sm"
                             : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                         }`}
                 >
@@ -176,8 +176,8 @@ export default function ActivitiesPage() {
                             {/* Activity Header */}
                             <div
                                 className={`px-6 py-4 border-b border-gray-100 ${activeTab === "biweekly"
-                                        ? "bg-gradient-to-r from-emerald-50 to-teal-50"
-                                        : "bg-gradient-to-r from-purple-50 to-pink-50"
+                                        ? "bg-sky-50"
+                                        : "bg-amber-50"
                                     }`}
                             >
                                 <div className="flex items-start justify-between">
@@ -187,7 +187,7 @@ export default function ActivitiesPage() {
                                             {activeTab === "biweekly" ? (
                                                 <Calendar className="w-4 h-4 text-emerald-600" />
                                             ) : (
-                                                <CalendarDays className="w-4 h-4 text-purple-600" />
+                                                <CalendarDays className="w-4 h-4 text-amber-600" />
                                             )}
                                             <span>
                                                 {formatDate(activity.startDate)} — {formatDate(activity.endDate)}
@@ -197,7 +197,7 @@ export default function ActivitiesPage() {
                                     <span
                                         className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${activeTab === "biweekly"
                                                 ? "bg-emerald-100 text-emerald-700"
-                                                : "bg-purple-100 text-purple-700"
+                                                : "bg-amber-100 text-amber-700"
                                             }`}
                                     >
                                         {activeTab === "biweekly" ? "Bi-Weekly" : "Monthly"}

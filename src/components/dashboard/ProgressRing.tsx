@@ -6,6 +6,12 @@ interface ProgressRingProps {
     percentage: number;
 }
 
+// Color constants from design system
+const COLORS = {
+    blue: "#2563eb",  // blue-600
+    gray: "#e5e7eb",  // gray-200
+};
+
 export default function ProgressRing({ percentage }: ProgressRingProps) {
     const data = [
         { value: percentage },
@@ -27,8 +33,8 @@ export default function ProgressRing({ percentage }: ProgressRingProps) {
                         dataKey="value"
                         stroke="none"
                     >
-                        <Cell fill="#2563eb" /> {/* Blue-600 */}
-                        <Cell fill="#e5e7eb" /> {/* Gray-200 */}
+                        <Cell fill={COLORS.blue} />
+                        <Cell fill={COLORS.gray} />
                     </Pie>
                 </PieChart>
             </ResponsiveContainer>

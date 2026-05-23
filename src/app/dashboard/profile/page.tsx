@@ -54,7 +54,7 @@ export default function StudentProfilePage() {
             <Breadcrumb homeHref="/dashboard" homeLabel="Dashboard" />
 
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-8">
+                <div className="bg-sky-500 px-6 py-8">
                     <div className="flex items-center gap-4">
                         <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center">
                             {session.user?.image ? (

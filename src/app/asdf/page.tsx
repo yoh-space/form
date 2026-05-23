@@ -11,7 +11,7 @@ export default function AdminPage() {
 
   if (!enrollments) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-sky-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading enrollments...</p>
@@ -34,7 +34,7 @@ export default function AdminPage() {
     });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-sky-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
@@ -79,7 +79,7 @@ export default function AdminPage() {
           {filteredEnrollments.map((enrollment) => (
             <div key={enrollment._id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
+              <div className="bg-sky-500 text-white p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
                     <h3 className="text-xl font-semibold">{enrollment.fullName}</h3>

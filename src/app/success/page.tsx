@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaCheck, FaBookOpen, FaHouse, FaGlobe } from "react-icons/fa6";
+import Button3D from "@/components/Button3D";
 
 export default function Success() {
   const [mounted, setMounted] = useState(false);
@@ -9,45 +11,51 @@ export default function Success() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-white flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-dot-grid flex items-center justify-center px-4 relative overflow-hidden">
+      {/* Decorative Blur Blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className={`absolute top-20 left-[10%] w-72 h-72 bg-emerald-500/10 rounded-full blur-[100px] transition-all duration-1000 ${mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`} />
+        <div className={`absolute bottom-20 right-[10%] w-80 h-80 bg-teal-500/10 rounded-full blur-[120px] transition-all duration-1000 delay-300 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} />
+      </div>
+
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute top-20 left-[15%] text-6xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite' }}>🎉</div>
-        <div className={`absolute top-32 right-[20%] text-5xl transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float 7s ease-in-out infinite reverse' }}>🚀</div>
-        <div className={`absolute bottom-32 left-[25%] text-4xl transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 8s ease-in-out infinite' }}>✨</div>
-        <div className={`absolute bottom-40 right-[15%] text-5xl transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite reverse' }}>📱</div>
+        <div className={`absolute top-24 left-[15%] text-5xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite' }}>🎉</div>
+        <div className={`absolute top-36 right-[20%] text-4xl transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float-reverse 7s ease-in-out infinite' }}>🚀</div>
+        <div className={`absolute bottom-32 left-[25%] text-3xl transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 8s ease-in-out infinite' }}>✨</div>
+        <div className={`absolute bottom-40 right-[15%] text-4xl transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite reverse' }}>📱</div>
       </div>
 
       <div className={`max-w-md w-full text-center transition-all duration-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-        <div className="bg-white rounded-3xl shadow-2xl shadow-gray-200/50 border border-gray-100 p-10 relative overflow-hidden">
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 animate-shimmer opacity-50" />
+        <div className="glass-card rounded-[2.5rem] border border-slate-800/80 p-8 md:p-10 relative overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.1)]">
           
           <div className={`relative z-10 transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full mx-auto mb-6 flex items-center justify-center shadow-xl shadow-green-500/30" style={{ animation: 'bounce-slow 2s ease-in-out infinite' }}>
-              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
+            <div className="w-20 h-24 mb-6 flex flex-col items-center justify-center mx-auto">
+              <div 
+                className="w-16 h-16 bg-sky-500 rounded-2xl flex items-center justify-center text-white text-2xl shadow-[0_0_25px_rgba(16,185,129,0.4)]" 
+                style={{ animation: 'float 6s ease-in-out infinite' }}
+              >
+                <FaCheck />
+              </div>
             </div>
             
-            <h1 className="text-3xl font-bold text-gray-900 mb-3">Application Submitted!</h1>
-            <p className="text-gray-600 mb-8">
-              Thank you for your interest in the React Native Mentorship Program. 
-              We'll be in touch soon via Telegram or email.
+            <h1 className="text-2xl md:text-3xl font-black text-white mb-3">Application Submitted!</h1>
+            <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-8">
+              Thank you for your interest in the React Native & Full-stack Mentorship Program. 
+              We'll review your application and be in touch soon via Telegram or email.
             </p>
             
-            <div className="space-y-3">
-              <Link 
-                href="/verify"
-                className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:-translate-y-1"
-              >
+            <div className="space-y-3.5">
+              <Button3D className="font-bold gap-2 w-full">
+                <FaBookOpen />
                 View Course Syllabus
-              </Link>
+              </Button3D>
               
               <Link 
                 href="/"
-                className="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1"
+                className="group flex items-center justify-center gap-2 w-full bg-slate-900/60 hover:bg-slate-900 border border-slate-850 hover:border-slate-800 text-slate-200 hover:text-white px-6 py-3.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5"
               >
+                <FaHouse />
                 Back to Home
               </Link>
               
@@ -55,16 +63,17 @@ export default function Success() {
                 href="https://yotech.space"
                 target="_blank"
                 rel="noopener"
-                className="block w-full bg-gray-100 text-gray-700 px-8 py-4 rounded-full font-medium hover:bg-gray-200 transition-all duration-300"
+                className="group flex items-center justify-center gap-2 w-full bg-slate-950/60 border border-slate-900 hover:bg-slate-900/60 hover:border-slate-850 text-slate-400 hover:text-slate-300 px-6 py-3.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5"
               >
-                Visit yotech.space →
+                <FaGlobe />
+                Visit yotech.space
               </a>
             </div>
           </div>
         </div>
 
-        <p className={`mt-8 text-gray-500 text-sm transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-          Powered by <a href="https://yotech.space" target="_blank" rel="noopener" className="text-blue-500 hover:underline">Yo-Tech Solution</a>
+        <p className={`mt-8 text-slate-500 text-xs font-semibold tracking-wider uppercase transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+          Powered by <a href="https://yotech.space" target="_blank" rel="noopener" className="text-teal-400 hover:text-teal-300 transition-colors">Yotech Digitals</a>
         </p>
       </div>
     </div>

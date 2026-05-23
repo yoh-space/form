@@ -12,14 +12,17 @@ const phases = [
     title: "Orientation & App Idea Formation",
     duration: "Weeks 1–2",
     Icon: Compass,
-    color: "from-blue-500 to-cyan-500",
+    color: "bg-sky-500",
     description: "Give you clarity, direction, and motivation before coding begins.",
     topics: [
-      "Program onboarding and expectations",
-      "App idea brainstorming and refinement",
-      "Problem → user → solution thinking",
-      "Basic market validation using AppBrain",
-      "Creating a personal learning plan"
+      "Fundamentals to Mobile Application",
+      "App idea brainstorming",
+      "App Idea validation",
+      "More About React Native and React",
+      "Expo and Expo Snack",
+      "How JavaScript works with React Native",
+      "Node.js Environment setup",
+      "Git, GitHub, Reddit, X, Quora, Stack Overflow Introduction"
     ],
     deliverables: [
       "One clear app idea or problem statement",
@@ -30,18 +33,30 @@ const phases = [
   {
     phase: 1,
     title: "Technology Fundamentals",
-    duration: "Month 1",
+    duration: "Weeks 2–3",
     Icon: Blocks,
-    color: "from-purple-500 to-pink-500",
+    color: "bg-sky-500",
     description: "Build a strong foundation and remove confusion about tools and technologies.",
     topics: [
-      "JavaScript fundamentals",
-      "Node.js basics and ecosystem",
-      "React fundamentals",
-      "Introduction to React Native",
-      "Expo ecosystem overview",
-      "Firebase basics",
-      "Git & GitHub fundamentals"
+      "React Native Components",
+      "JavaScript (Var, Const, Let, Template literals)",
+      "Creating Expo App",
+      "GitHub CI/CD",
+      "React Native Core Components (View, Button, TouchableOpacity, Text, StyleSheet API)",
+      "Third Party Packages (react-native-safe-area-context, react-native-paper)",
+      "Passing Props to components",
+      "Basic function declaration",
+      "React State Management (useEffect, useState, useContext)",
+      "Implementation of setInterval() method inside useEffect",
+      "Context Provider implementation",
+      "Community Component & Packages usage",
+      "Introduction to local build with assembleRelease",
+      "Async Storage using @react-native-async-storage/async-storage",
+      "Animation using lottie-react-native",
+      "Onboarding Screen design using react-native-onboarding-swiper",
+      "Other utility packages (react-native-edge-to-edge, react-native-safe-area-context, react-native-paper)",
+      "Expo router and local parameter passing implementation",
+      "Expo Drawer navigation"
     ],
     deliverables: [
       "Understand what each technology does and why it matters",
@@ -52,43 +67,47 @@ const phases = [
   {
     phase: 2,
     title: "Core Concepts & App Building",
-    duration: "Month 2–3",
+    duration: "Weeks 1–3",
     Icon: Brain,
-    color: "from-green-500 to-emerald-500",
-    description: "Learn core concepts and start building real app features.",
+    color: "bg-sky-500",
+    description: "Build the foundation of your news app with UI, state management, and backend integration.",
     topics: [
-      "Node.js basics and APIs",
-      "React fundamentals (components, state, props, hooks)",
-      "React Native core components and styling",
-      "Essential libraries (Axios, Firebase, Navigation, etc.)",
-      "Performance basics"
+      "Project Setup & UI Foundation (Project structure, Expo Router, Basic UI design)",
+      "Scroll & List Rendering (ScrollView vs FlatList, Dynamic list rendering, Image integration)",
+      "Zustand Global State (Global state definition, Store creation, Cross-screen data sharing)",
+      "Firebase Authentication (Signup, Login, Logout flows, Auth state handling)",
+      "Admin Role Detection (Role-based logic, Conditional rendering, Feature visibility control)",
+      "Convex Backend Read (Backend fundamentals, Data fetching from Convex, UI synchronization)"
     ],
     deliverables: [
-      "Build real app screens",
-      "Connect your app to data",
-      "Navigate between screens",
-      "Understand how apps actually work"
+      "Home screen with news card component",
+      "News feed with seamless scrolling",
+      "Zustand store for news data management",
+      "Login screen with main app protection",
+      "Admin detection and feature visibility",
+      "News data loaded from Convex backend"
     ]
   },
   {
     phase: 3,
-    title: "Workflows, Tooling & Publishing Basics",
-    duration: "Month 4",
+    title: "Advanced Features & Data Management",
+    duration: "Weeks 4–6",
     Icon: Wrench,
-    color: "from-orange-500 to-red-500",
-    description: "Understand production workflows and prepare for publishing.",
+    color: "bg-sky-500",
+    description: "Implement CRUD operations, forms, and monetization features.",
     topics: [
-      "React Native workflows (Expo Managed, Prebuild, Development Build, Bare)",
-      "GitHub best practices",
-      "Introduction to CI/CD",
-      "Firebase project setup",
-      "Google Play Console basics",
-      "App signing and build concepts"
+      "Convex Backend Write Data (Create and delete operations, Admin news addition/deletion)",
+      "Forms & Image Handling (Form inputs, Image handling with URLs or assets)",
+      "AdMob Integration (Banner ads, App monetization principles)",
+      "Environment Variables & AI Tools (.env basics, API key security, Effective AI tool usage)",
+      "App Publishing (APK/AAB build process, Google Play Console setup, Store listing optimization)"
     ],
     deliverables: [
-      "Understand how production apps are prepared",
-      "Choose the correct workflow confidently",
-      "Be ready for publishing steps"
+      "Admin panel for news management",
+      "Add News screen with form validation",
+      "AdMob integration in news screen",
+      "Secure configuration with environment variables",
+      "Published app on Google Play Store"
     ]
   },
   {
@@ -96,7 +115,7 @@ const phases = [
     title: "AI-Assisted Development & Productivity",
     duration: "Month 5",
     Icon: Zap,
-    color: "from-indigo-500 to-blue-500",
+    color: "bg-sky-500",
     description: "Leverage AI tools to work faster and smarter.",
     topics: [
       "Using free AI tools responsibly",
@@ -117,7 +136,7 @@ const phases = [
     title: "Product Thinking, Monetization & Launch",
     duration: "Month 6",
     Icon: TrendingUp,
-    color: "from-rose-500 to-pink-500",
+    color: "bg-sky-500",
     description: "Finalize your app and prepare for real-world launch.",
     topics: [
       "Market research using AppBrain",
@@ -210,7 +229,7 @@ export default function Syllabus() {
   if (isPending || !session) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white">
+    <div className="min-h-screen bg-white">
       {/* Navigation Header */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -239,7 +258,7 @@ export default function Syllabus() {
       <div className="relative overflow-hidden border-b border-gray-200/50">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-100/20 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
@@ -257,7 +276,7 @@ export default function Syllabus() {
 
       {/* Core Principle */}
       <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200/50 rounded-2xl p-8 transition-all duration-700 delay-100 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+        <div className={`bg-sky-50 border border-blue-200/50 rounded-2xl p-8 transition-all duration-700 delay-100 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           <p className="text-lg text-gray-800">
             <span className="font-bold text-blue-600">Core Principle:</span> You will learn by building <span className="font-semibold">your own app idea</span>. Every topic, tool, and exercise is connected to a real project.
           </p>
@@ -293,7 +312,7 @@ export default function Syllabus() {
                           <h3 className="text-xl font-bold text-gray-900">
                             Phase {phase.phase}: {phase.title}
                           </h3>
-                          <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${phase.color} text-white`}>
+                          <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${phase.color} text-white`}>
                             {phase.duration}
                           </span>
                         </div>
@@ -356,7 +375,7 @@ export default function Syllabus() {
               style={{ transitionDelay: `${(idx + 1) * 50}ms` }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                <div className="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold">
                   {outcome.month}
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">{outcome.title}</h3>
@@ -391,7 +410,7 @@ export default function Syllabus() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className={`bg-gradient-to-br from-gray-50 to-gray-100/50 border border-gray-200/50 rounded-xl p-6 transition-all duration-300 hover:shadow-lg ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`bg-gray-50 border border-gray-200/50 rounded-xl p-6 transition-all duration-300 hover:shadow-lg ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: `${(idx + 1) * 50}ms` }}
             >
               <item.Icon className="w-8 h-8 text-blue-600 mb-3" />
@@ -404,7 +423,7 @@ export default function Syllabus() {
 
       {/* Final Outcome */}
       <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white transition-all duration-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+        <div className={`bg-sky-600 rounded-2xl p-12 text-white transition-all duration-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
             <Award className="w-8 h-8" /> Final Outcome
           </h2>

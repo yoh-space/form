@@ -24,7 +24,7 @@ export default function QuickActions() {
                 </Link>
                 <Link
                     href="/admin/activities/new?type=monthly"
-                    className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors"
+                    className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-amber-700 transition-colors"
                 >
                     <CalendarDays className="w-5 h-5" />
                     Monthly Plan

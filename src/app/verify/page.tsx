@@ -40,7 +40,7 @@ export default function Verify() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Verify Access</h1>
@@ -88,7 +88,7 @@ export default function Verify() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all disabled:opacity-50"
+              className="w-full bg-sky-600 text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all disabled:opacity-50"
             >
               {loading ? "Verifying..." : "Verify & Access Syllabus"}
             </button>

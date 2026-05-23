@@ -54,7 +54,7 @@ export default function AdminProfilePage() {
             <Breadcrumb homeHref="/admin" homeLabel="Admin" />
 
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-8">
+                <div className="bg-sky-500 px-6 py-8">
                     <div className="flex items-center gap-4">
                         <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center">
                             {session.user?.image ? (
@@ -75,7 +75,7 @@ export default function AdminProfilePage() {
                                     Admin
                                 </span>
                             </div>
-                            <p className="text-purple-100">{session.user?.email}</p>
+                            <p className="text-teal-100">{session.user?.email}</p>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ export default function AdminProfilePage() {
                             type="text"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                             placeholder="Enter your name"
                         />
                     </div>
@@ -122,7 +122,7 @@ export default function AdminProfilePage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="w-full bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
                             {isLoading ? (
                                 <>

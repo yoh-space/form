@@ -53,7 +53,7 @@ export default function ActivitiesPage() {
                     </Link>
                     <Link
                         href="/admin/activities/new?type=monthly"
-                        className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors"
+                        className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-amber-700 transition-colors"
                     >
                         <CalendarDays className="w-5 h-5" />
                         New Monthly
@@ -100,7 +100,7 @@ export default function ActivitiesPage() {
                                         <span
                                             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${activity.type === "biweekly"
                                                     ? "bg-emerald-100 text-emerald-700"
-                                                    : "bg-purple-100 text-purple-700"
+                                                    : "bg-amber-100 text-amber-700"
                                                 }`}
                                         >
                                             {activity.type === "biweekly" ? (

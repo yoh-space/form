@@ -49,7 +49,7 @@ export default function AdminHeader() {
                     <Link
                         href="/admin/profile"
                         className={`p-2 rounded-lg transition-colors ${isActive("/admin/profile")
-                            ? "text-purple-600 bg-purple-50"
+                            ? "text-teal-600 bg-teal-50"
                             : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                             }`}
                         title="Profile"
