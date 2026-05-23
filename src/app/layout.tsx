@@ -3,8 +3,8 @@ import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
-  title: "React Native Mentorship Program",
-  description: "Pre-enrollment for React Native Mobile App Development Mentorship",
+  title: "2nd Round React Native Mentorship Program",
+  description: "Pre-enrollment for 2nd Round React Native Mobile App Development Mentorship",
   icons: {
     icon: "/yotechlogo.png",
     shortcut: "/yotechlogo.png",
