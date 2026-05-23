@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaCheck, FaBookOpen, FaHouse, FaGlobe } from "react-icons/fa6";
+import { FaCheck, FaBookOpen, FaHouse, FaGlobe, FaStar, FaTrophy, FaRocket, FaMobile } from "react-icons/fa6";
 import Button3D from "@/components/Button3D";
 
 export default function Success() {
@@ -20,10 +20,10 @@ export default function Success() {
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute top-24 left-[15%] text-5xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite' }}>🎉</div>
-        <div className={`absolute top-36 right-[20%] text-4xl transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float-reverse 7s ease-in-out infinite' }}>🚀</div>
-        <div className={`absolute bottom-32 left-[25%] text-3xl transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 8s ease-in-out infinite' }}>✨</div>
-        <div className={`absolute bottom-40 right-[15%] text-4xl transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite reverse' }}>📱</div>
+        <div className={`absolute top-24 left-[15%] text-5xl text-amber-400 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite' }}><FaTrophy /></div>
+        <div className={`absolute top-36 right-[20%] text-4xl text-sky-400 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`} style={{ animation: 'float-reverse 7s ease-in-out infinite' }}><FaRocket /></div>
+        <div className={`absolute bottom-32 left-[25%] text-3xl text-yellow-400 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 8s ease-in-out infinite' }}><FaStar /></div>
+        <div className={`absolute bottom-40 right-[15%] text-4xl text-teal-400 transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ animation: 'float 6s ease-in-out infinite reverse' }}><FaMobile /></div>
       </div>
 
       <div className={`max-w-md w-full text-center transition-all duration-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>

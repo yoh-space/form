@@ -5,17 +5,17 @@ import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { Input, Textarea, OptionButton, TagButton, ProgressBar } from "./FormInputs";
-import { FaUser, FaLaptopCode, FaBullseye, FaCompass, FaClock, FaHandsHelping, FaLightbulb, FaCreditCard, FaChevronLeft, FaChevronRight, FaPaperPlane } from "react-icons/fa";
+import { FaUser, FaLaptopCode, FaBullseye, FaCompass, FaClock, FaHandsHelping, FaLightbulb, FaCreditCard, FaChevronLeft, FaChevronRight, FaPaperPlane, FaBriefcase, FaStar } from "react-icons/fa";
 import Button3D from "./Button3D";
 
 const TECHNOLOGIES = ["HTML/CSS", "JavaScript", "TypeScript", "React", "Node.js", "Python", "Java", "Flutter", "Swift", "Kotlin", "None"];
 const WHY_REACT_NATIVE = ["Build cross-platform apps", "Career advancement", "Start a business/startup", "Personal project", "Freelancing opportunities"];
 const LONG_TERM_GOALS = ["Become a mobile developer", "Build my own app/startup", "Freelance/consulting", "Add to existing skillset", "Career transition"];
 const FOCUS_OPTIONS = [
-  { value: "business", label: "Business-oriented", icon: "💼" },
-  { value: "technical", label: "Technical/Programming", icon: "💻" },
-  { value: "general", label: "General Skill Focus", icon: "🎯" },
-  { value: "other", label: "Other Focus", icon: "✨" }
+  { value: "business", label: "Business-oriented", icon: <FaBriefcase /> },
+  { value: "technical", label: "Technical/Programming", icon: <FaLaptopCode /> },
+  { value: "general", label: "General Skill Focus", icon: <FaBullseye /> },
+  { value: "other", label: "Other Focus", icon: <FaStar /> }
 ];
 const WEEKLY_HOURS = ["5-10 hours", "10-15 hours", "15-20 hours", "20+ hours"];
 const LEARNING_STYLES = ["Video tutorials", "Hands-on projects", "Reading documentation", "One-on-one mentoring", "Group sessions"];

@@ -136,9 +136,11 @@ export default function MentorSection() {
             {/* Left Col: Avatar placeholder & stats */}
             <div className="md:col-span-4 flex flex-col items-center text-center gap-4">
               <div className="relative group">
-                <div className="w-32 h-32 rounded-3xl bg-sky-500 flex items-center justify-center text-5xl shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105">
-                  👨‍💻
-                </div>
+                <img
+                  src="/mentor-image.png"
+                  alt="Yohannes Damtie"
+                  className="w-32 h-32 rounded-3xl object-cover shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105"
+                />
                 {/* Glow Ring */}
                 <div className="absolute -inset-2 rounded-[2rem] bg-sky-500/20 blur-md group-hover:opacity-40 transition-opacity duration-500" />
               </div>
