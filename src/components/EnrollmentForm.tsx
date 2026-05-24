@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useRouter } from "next/navigation";
-import { Input, Textarea, OptionButton, TagButton, ProgressBar } from "./FormInputs";
-import { FaUser, FaLaptopCode, FaBullseye, FaCompass, FaClock, FaHandsHelping, FaLightbulb, FaCreditCard, FaChevronLeft, FaChevronRight, FaPaperPlane, FaBriefcase, FaStar } from "react-icons/fa";
+import { Input, Textarea, OptionButton, TagButton, ProgressBar, Select } from "./FormInputs";
+import { FaUser, FaLaptopCode, FaBullseye, FaCompass, FaClock, FaHandsHelping, FaLightbulb, FaCreditCard, FaChevronLeft, FaChevronRight, FaPaperPlane, FaBriefcase, FaStar, FaQuestionCircle, FaSeedling } from "react-icons/fa";
 import Button3D from "./Button3D";
 
 const TECHNOLOGIES = ["HTML/CSS", "JavaScript", "TypeScript", "React", "Node.js", "Python", "Java", "Flutter", "Swift", "Kotlin", "None"];
@@ -19,7 +19,6 @@ const FOCUS_OPTIONS = [
 ];
 const WEEKLY_HOURS = ["5-10 hours", "10-15 hours", "15-20 hours", "20+ hours"];
 const LEARNING_STYLES = ["Video tutorials", "Hands-on projects", "Reading documentation", "One-on-one mentoring", "Group sessions"];
-const PAYMENT_METHODS = ["Bank Transfer", "Mobile Money", "PayPal", "Crypto", "Other"];
 
 export default function EnrollmentForm() {
   const router = useRouter();
@@ -36,7 +35,7 @@ export default function EnrollmentForm() {
     weeklyHours: "", learningStyle: "",
     challenges: "", mentorNeeds: "", specialRequirements: "",
     hasAppIdea: "", appIdeaDescription: "",
-    paymentMethod: "",
+    expectedPrice: "",
   });
 
   useEffect(() => {
@@ -72,9 +71,8 @@ export default function EnrollmentForm() {
     return phoneRegex.test(phone);
   };
 
-  const validateMinWords = (text: string, minWords: number): boolean => {
-    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
-    return words.length >= minWords;
+  const validateMinChars = (text: string, minChars: number): boolean => {
+    return text.trim().length >= minChars;
   };
 
   const validateField = (field: string, value: string): string => {
@@ -96,15 +94,19 @@ export default function EnrollmentForm() {
         return '';
       case 'expectations':
         if (!value) return 'This field is required';
-        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        if (!validateMinChars(value, 30)) return 'Please provide at least 30 characters';
         return '';
       case 'challenges':
         if (!value) return 'This field is required';
-        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        if (!validateMinChars(value, 30)) return 'Please provide at least 30 characters';
         return '';
       case 'mentorNeeds':
         if (!value) return 'This field is required';
-        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        if (!validateMinChars(value, 30)) return 'Please provide at least 30 characters';
+        return '';
+      case 'expectedPrice':
+        if (!value) return 'Expected price is required';
+        if (isNaN(Number(value)) || Number(value) <= 0) return 'Please enter a valid amount';
         return '';
       default:
         return '';
@@ -132,6 +134,9 @@ export default function EnrollmentForm() {
     // Step 6 fields
     allErrors.challenges = validateField('challenges', form.challenges);
     allErrors.mentorNeeds = validateField('mentorNeeds', form.mentorNeeds);
+    
+    // Step 8 fields
+    allErrors.expectedPrice = validateField('expectedPrice', form.expectedPrice);
     
     // Check if any errors exist
     const hasErrors = Object.values(allErrors).some(error => error !== '');
@@ -168,7 +173,7 @@ export default function EnrollmentForm() {
       5: ['weeklyHours', 'learningStyle'],
       6: ['challenges', 'mentorNeeds'],
       7: ['hasAppIdea', 'appIdeaDescription'],
-      8: ['paymentMethod']
+      8: ['expectedPrice']
     };
 
     const currentStepFields = stepErrors[step as keyof typeof stepErrors] || [];
@@ -184,7 +189,7 @@ export default function EnrollmentForm() {
       case 5: return form.weeklyHours && form.learningStyle;
       case 6: return form.challenges && form.mentorNeeds;
       case 7: return form.hasAppIdea && (form.hasAppIdea !== "yes" || form.appIdeaDescription);
-      case 8: return form.paymentMethod;
+      case 8: return form.expectedPrice;
       default: return false;
     }
   };
@@ -427,12 +432,12 @@ export default function EnrollmentForm() {
                 
                 <div className="space-y-3">
                   {[
-                    { value: "yes", label: "Yes, I have an app idea I want to build", icon: "💡" },
-                    { value: "no", label: "No, I'd prefer a mentor-assigned challenge", icon: "🤔" },
-                    { value: "not-sure", label: "I am not sure yet, open to brainstorm", icon: "🌱" }
+                    { value: "yes", label: "Yes, I have an app idea I want to build", icon: <FaLightbulb /> },
+                    { value: "no", label: "No, I'd prefer a mentor-assigned challenge", icon: <FaQuestionCircle /> },
+                    { value: "not-sure", label: "I am not sure yet, open to brainstorm", icon: <FaSeedling /> }
                   ].map(opt => (
                     <OptionButton key={opt.value} selected={form.hasAppIdea === opt.value} onClick={() => updateForm("hasAppIdea", opt.value)} className="w-full flex items-center gap-4 py-4">
-                      <span className="text-2xl">{opt.icon}</span>
+                      <span className="text-xl text-teal-400">{opt.icon}</span>
                       <span className="font-bold text-xs md:text-sm">{opt.label}</span>
                     </OptionButton>
                   ))}
@@ -463,14 +468,16 @@ export default function EnrollmentForm() {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase block">Select Payment Method *</label>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {PAYMENT_METHODS.map(method => (
-                      <OptionButton key={method} selected={form.paymentMethod === method} onClick={() => updateForm("paymentMethod", method)} className="text-center justify-center py-4">
-                        <span className="font-bold text-xs">{method}</span>
-                      </OptionButton>
-                    ))}
-                  </div>
+                  <Input 
+                    label="Expected Price (ETB) *" 
+                    type="number" 
+                    value={form.expectedPrice} 
+                    onChange={v => updateForm("expectedPrice", v)} 
+                    placeholder="e.g., 15000"
+                    error={errors.expectedPrice}
+                    onBlur={() => handleFieldBlur("expectedPrice", form.expectedPrice)}
+                  />
+                  <p className="text-slate-400 text-xs">How much do you expect the mentorship to cost? Payment will be via bank transfer.</p>
                 </div>
               </div>
             )}

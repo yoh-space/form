@@ -111,6 +111,63 @@ export function Textarea({ label, value, onChange, placeholder = "", error, onBl
   );
 }
 
+export function Select({ label, value, onChange, options, error, onBlur }: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  error?: string;
+  onBlur?: () => void;
+}) {
+  const inputId = label.toLowerCase().replace(/[^a-z0-9]/g, "-");
+
+  return (
+    <div className="glitch-input-wrapper my-3">
+      <div className="input-container">
+        <select
+          id={inputId}
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onBlur={onBlur}
+          className={`holo-input py-3.5 ${error ? 'border-red-500' : ''}`}
+          required
+        >
+          <option value="">Select an option</option>
+          {options.map(option => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+        <label htmlFor={inputId} className="input-label" data-text={label}>
+          {label}
+        </label>
+        <div className="input-border" />
+        <div className="input-scanline" />
+        <div className="input-glow" />
+        
+        {/* Animated stream bars */}
+        <div className="input-data-stream">
+          {Array.from({ length: 10 }).map((_, idx) => (
+            <div
+              key={idx}
+              className="stream-bar"
+              style={{ "--i": idx } as React.CSSProperties}
+            />
+          ))}
+        </div>
+
+        {/* Techno cyber corners */}
+        <div className="input-corners">
+          <div className="corner corner-tl" />
+          <div className="corner corner-tr" />
+          <div className="corner corner-bl" />
+          <div className="corner corner-br" />
+        </div>
+      </div>
+      {error && <p className="text-red-400 text-xs mt-1 font-semibold">{error}</p>}
+    </div>
+  );
+}
+
 export function OptionButton({ selected, onClick, children, className = "" }: {
   selected: boolean;
   onClick: () => void;

@@ -31,7 +31,7 @@ export default defineSchema({
     hasAppIdea: v.string(),
     appIdeaDescription: v.optional(v.string()),
     // Payment
-    paymentMethod: v.string(),
+    expectedPrice: v.string(),
     // Meta
     submittedAt: v.number(),
     // Link to user

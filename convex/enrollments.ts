@@ -24,7 +24,7 @@ export const submit = mutation({
     specialRequirements: v.optional(v.string()),
     hasAppIdea: v.string(),
     appIdeaDescription: v.optional(v.string()),
-    paymentMethod: v.string(),
+    expectedPrice: v.string(),
   },
   handler: async (ctx, args) => {
     // Optional: Try to get authenticated user, but don't require it
