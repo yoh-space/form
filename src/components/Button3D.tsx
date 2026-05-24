@@ -16,8 +16,8 @@ const StyledWrapper = styled.div`
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.5s;
-    font-size: 17px;
-    padding: 1ch 2ch;
+    font-size: 14px;
+    padding: 0.75ch 1.5ch;
     background-color: white;
     color: #000;
     cursor: pointer;

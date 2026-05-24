@@ -10,6 +10,13 @@ export default function Navbar() {
   const { data: session } = authClient.useSession();
   const router = useRouter();
 
+  const scrollToEnroll = () => {
+    const enrollSection = document.getElementById('enroll');
+    if (enrollSection) {
+      enrollSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="bg-slate-950/60 backdrop-blur-xl border-b border-slate-900 sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -47,7 +54,7 @@ export default function Navbar() {
               Login
             </Link>
           )} */}
-          <Button3D className="font-bold gap-1.5">
+          <Button3D className="font-bold gap-1 !text-xs !py-1.5 !px-2.5" onClick={scrollToEnroll}>
             <FaGraduationCap />
             Enroll Now
           </Button3D>

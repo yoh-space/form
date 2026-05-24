@@ -45,7 +45,16 @@ export default function EnrollmentForm() {
     return () => observer.disconnect();
   }, []);
 
-  const updateForm = (field: string, value: string | string[]) => setForm(prev => ({ ...prev, [field]: value }));
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const updateForm = (field: string, value: string | string[]) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
   const toggleTech = (tech: string) => setForm(prev => ({
     ...prev,
     technologiesUsed: prev.technologiesUsed.includes(tech)
@@ -53,7 +62,85 @@ export default function EnrollmentForm() {
       : [...prev.technologiesUsed, tech]
   }));
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^09\d{8}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const validateMinWords = (text: string, minWords: number): boolean => {
+    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+    return words.length >= minWords;
+  };
+
+  const validateField = (field: string, value: string): string => {
+    switch (field) {
+      case 'fullName':
+        if (!value || value.trim().length < 2) return 'Full name must be at least 2 characters';
+        return '';
+      case 'email':
+        if (!value) return 'Email is required';
+        if (!validateEmail(value)) return 'Please enter a valid email address';
+        return '';
+      case 'telegramUsername':
+        if (!value) return 'Telegram username is required';
+        if (!value.startsWith('@')) return 'Telegram username must start with @';
+        return '';
+      case 'phoneNumber':
+        if (!value) return 'Phone number is required';
+        if (!validatePhone(value)) return 'Phone number must be 10 digits starting with 09';
+        return '';
+      case 'expectations':
+        if (!value) return 'This field is required';
+        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        return '';
+      case 'challenges':
+        if (!value) return 'This field is required';
+        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        return '';
+      case 'mentorNeeds':
+        if (!value) return 'This field is required';
+        if (!validateMinWords(value, 10)) return 'Please provide at least 10 words';
+        return '';
+      default:
+        return '';
+    }
+  };
+
+  const handleFieldBlur = (field: string, value: string) => {
+    const error = validateField(field, value);
+    setErrors(prev => ({ ...prev, [field]: error }));
+  };
+
   const handleSubmit = async () => {
+    // Validate all required fields before submission
+    const allErrors: Record<string, string> = {};
+    
+    // Step 1 fields
+    allErrors.fullName = validateField('fullName', form.fullName);
+    allErrors.email = validateField('email', form.email);
+    allErrors.telegramUsername = validateField('telegramUsername', form.telegramUsername);
+    allErrors.phoneNumber = validateField('phoneNumber', form.phoneNumber);
+    
+    // Step 3 fields
+    allErrors.expectations = validateField('expectations', form.expectations);
+    
+    // Step 6 fields
+    allErrors.challenges = validateField('challenges', form.challenges);
+    allErrors.mentorNeeds = validateField('mentorNeeds', form.mentorNeeds);
+    
+    // Check if any errors exist
+    const hasErrors = Object.values(allErrors).some(error => error !== '');
+    if (hasErrors) {
+      setErrors(allErrors);
+      alert('Please fix the validation errors before submitting.');
+      return;
+    }
+
     setLoading(true);
     try {
       await submitEnrollment({
@@ -72,8 +159,25 @@ export default function EnrollmentForm() {
   };
 
   const canProceed = () => {
+    // Check for validation errors on current step
+    const stepErrors = {
+      1: ['fullName', 'email', 'telegramUsername', 'phoneNumber'],
+      2: [],
+      3: ['expectations', 'whyReactNative', 'longTermGoal'],
+      4: ['mentorshipFocus', 'focusOther'],
+      5: ['weeklyHours', 'learningStyle'],
+      6: ['challenges', 'mentorNeeds'],
+      7: ['hasAppIdea', 'appIdeaDescription'],
+      8: ['paymentMethod']
+    };
+
+    const currentStepFields = stepErrors[step as keyof typeof stepErrors] || [];
+    const hasErrors = currentStepFields.some(field => errors[field]);
+
+    if (hasErrors) return false;
+
     switch (step) {
-      case 1: return form.fullName && form.email && form.telegramUsername;
+      case 1: return form.fullName && form.email && form.telegramUsername && form.phoneNumber;
       case 2: return form.technicalBackground && form.technologiesUsed.length > 0 && form.hasBuiltApp;
       case 3: return form.expectations && form.whyReactNative && form.longTermGoal;
       case 4: return form.mentorshipFocus && (form.mentorshipFocus !== "other" || form.focusOther);
@@ -133,12 +237,12 @@ export default function EnrollmentForm() {
                 </h3>
                 <p className="text-slate-400 text-xs leading-relaxed">Please provide your authentic details. We coordinate primarily on Telegram.</p>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <Input label="Full Name *" value={form.fullName} onChange={v => updateForm("fullName", v)} placeholder="Yohannes Damtie" />
-                  <Input label="Email Address *" type="email" value={form.email} onChange={v => updateForm("email", v)} placeholder="yohannes@yotech.space" />
+                  <Input label="Full Name *" value={form.fullName} onChange={v => updateForm("fullName", v)} placeholder="Yohannes Damtie" error={errors.fullName} onBlur={() => handleFieldBlur("fullName", form.fullName)} />
+                  <Input label="Email Address *" type="email" value={form.email} onChange={v => updateForm("email", v)} placeholder="yohannes@yotech.space" error={errors.email} onBlur={() => handleFieldBlur("email", form.email)} />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
-                  <Input label="Telegram Username *" value={form.telegramUsername} onChange={v => updateForm("telegramUsername", v)} placeholder="@yotech_support" />
-                  <Input label="Phone Number (optional)" value={form.phoneNumber} onChange={v => updateForm("phoneNumber", v)} placeholder="+2519..." />
+                  <Input label="Telegram Username *" value={form.telegramUsername} onChange={v => updateForm("telegramUsername", v)} placeholder="@yotech_support" error={errors.telegramUsername} onBlur={() => handleFieldBlur("telegramUsername", form.telegramUsername)} />
+                  <Input label="Phone Number *" value={form.phoneNumber} onChange={v => updateForm("phoneNumber", v)} placeholder="0912345678" error={errors.phoneNumber} onBlur={() => handleFieldBlur("phoneNumber", form.phoneNumber)} />
                 </div>
               </div>
             )}
@@ -204,7 +308,7 @@ export default function EnrollmentForm() {
                   Your Goals & Expectations
                 </h3>
                 
-                <Textarea label="What do you expect to achieve after this 6-month mentorship? *" value={form.expectations} onChange={v => updateForm("expectations", v)} placeholder="Explain in your own words what you expect..." />
+                <Textarea label="What do you expect to achieve after this 6-month mentorship? *" value={form.expectations} onChange={v => updateForm("expectations", v)} placeholder="Explain in your own words what you expect..." error={errors.expectations} onBlur={() => handleFieldBlur("expectations", form.expectations)} />
 
                 <div className="space-y-3">
                   <label className="text-xs font-semibold tracking-wider text-slate-400 uppercase block">Why React Native? *</label>
@@ -302,9 +406,9 @@ export default function EnrollmentForm() {
                   Student Needs & Challenges
                 </h3>
 
-                <Textarea label="What challenges have you faced in learning development? *" value={form.challenges} onChange={v => updateForm("challenges", v)} placeholder="No guidance? Tech is complex? Hard to deploy? Specify here..." />
+                <Textarea label="What challenges have you faced in learning development? *" value={form.challenges} onChange={v => updateForm("challenges", v)} placeholder="No guidance? Tech is complex? Hard to deploy? Specify here..." error={errors.challenges} onBlur={() => handleFieldBlur("challenges", form.challenges)} />
                 
-                <Textarea label="What do you need most from your mentor Yohannes? *" value={form.mentorNeeds} onChange={v => updateForm("mentorNeeds", v)} placeholder="Weekly Zoom checkins? Instant code reviews? Deployment help?" />
+                <Textarea label="What do you need most from your mentor Yohannes? *" value={form.mentorNeeds} onChange={v => updateForm("mentorNeeds", v)} placeholder="Weekly Zoom checkins? Instant code reviews? Deployment help?" error={errors.mentorNeeds} onBlur={() => handleFieldBlur("mentorNeeds", form.mentorNeeds)} />
 
                 <Textarea label="Special Requirements or Accommodations (optional)" value={form.specialRequirements} onChange={v => updateForm("specialRequirements", v)} placeholder="Let us know if you need specific schedule planning..." />
               </div>

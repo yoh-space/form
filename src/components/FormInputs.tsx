@@ -2,12 +2,14 @@
 
 import React from "react";
 
-export function Input({ label, value, onChange, type = "text", placeholder = "" }: {
+export function Input({ label, value, onChange, type = "text", placeholder = "", error, onBlur }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
   placeholder?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
   const inputId = label.toLowerCase().replace(/[^a-z0-9]/g, "-");
 
@@ -19,8 +21,9 @@ export function Input({ label, value, onChange, type = "text", placeholder = "" 
           id={inputId}
           value={value}
           onChange={e => onChange(e.target.value)}
+          onBlur={onBlur}
           placeholder=" "
-          className="holo-input"
+          className={`holo-input ${error ? 'border-red-500' : ''}`}
           required
         />
         <label htmlFor={inputId} className="input-label" data-text={label}>
@@ -49,15 +52,18 @@ export function Input({ label, value, onChange, type = "text", placeholder = "" 
           <div className="corner corner-br" />
         </div>
       </div>
+      {error && <p className="text-red-400 text-xs mt-1 font-semibold">{error}</p>}
     </div>
   );
 }
 
-export function Textarea({ label, value, onChange, placeholder = "" }: {
+export function Textarea({ label, value, onChange, placeholder = "", error, onBlur }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
   const inputId = label.toLowerCase().replace(/[^a-z0-9]/g, "-");
 
@@ -68,9 +74,10 @@ export function Textarea({ label, value, onChange, placeholder = "" }: {
           id={inputId}
           value={value}
           onChange={e => onChange(e.target.value)}
+          onBlur={onBlur}
           placeholder=" "
           rows={3}
-          className="holo-input h-24 py-3.5 resize-none"
+          className={`holo-input h-24 py-3.5 resize-none ${error ? 'border-red-500' : ''}`}
           required
         />
         <label htmlFor={inputId} className="input-label" data-text={label}>
@@ -99,6 +106,7 @@ export function Textarea({ label, value, onChange, placeholder = "" }: {
           <div className="corner corner-br" />
         </div>
       </div>
+      {error && <p className="text-red-400 text-xs mt-1 font-semibold">{error}</p>}
     </div>
   );
 }

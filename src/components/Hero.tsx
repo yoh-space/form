@@ -9,6 +9,13 @@ export default function Hero() {
   
   useEffect(() => setMounted(true), []);
 
+  const scrollToEnroll = () => {
+    const enrollSection = document.getElementById('enroll');
+    if (enrollSection) {
+      enrollSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative py-28 px-4 overflow-hidden min-h-[90vh] flex items-center justify-center matrix-grid">
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center relative z-10">
@@ -66,7 +73,7 @@ export default function Hero() {
           
           {/* Action Buttons */}
           <div className={`flex flex-col sm:flex-row gap-4 w-full sm:w-auto transition-all duration-700 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Button3D className="font-bold gap-1">
+            <Button3D className="font-bold gap-1" onClick={scrollToEnroll}>
               Start Enrollment
               <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button3D>
