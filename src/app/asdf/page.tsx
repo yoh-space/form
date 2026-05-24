@@ -105,7 +105,7 @@ export default function AdminPage() {
                     <div className="space-y-2 text-sm">
                       <p><span className="text-gray-500">Phone:</span> {enrollment.phoneNumber || "Not provided"}</p>
                       <p><span className="text-gray-500">Telegram:</span> @{enrollment.telegramUsername}</p>
-                      <p><span className="text-gray-500">Payment:</span> {enrollment.paymentMethod}</p>
+                      <p><span className="text-gray-500">Expected Price:</span> {enrollment.expectedPrice || "Not provided"} ETB</p>
                     </div>
                   </div>
 
