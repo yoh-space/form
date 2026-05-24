@@ -27,11 +27,18 @@ export const submit = mutation({
     paymentMethod: v.string(),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx);
+    // Optional: Try to get authenticated user, but don't require it
+    let userId: string | undefined;
+    try {
+      const user = await authComponent.getAuthUser(ctx);
+      userId = user?._id;
+    } catch {
+      // User not authenticated, proceed without userId
+    }
 
     return await ctx.db.insert("enrollments", {
       ...args,
-      userId: user?._id,
+      userId,
       submittedAt: Date.now(),
     });
   },

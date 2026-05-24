@@ -2,18 +2,16 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
 import { ChevronDown, Compass, Blocks, Brain, Wrench, Zap, TrendingUp, Video, FileText, Eye, MessageSquare, CheckCircle2, Award, Rocket, Target, Calendar } from "lucide-react";
 
 const phases = [
   {
-    phase: 0,
-    title: "Orientation & App Idea Formation",
-    duration: "Weeks 1–2",
+    phase: 1,
+    title: "First Semester: Fundamentals & Foundation",
+    duration: "Weeks 1–8",
     Icon: Compass,
     color: "bg-sky-500",
-    description: "Give you clarity, direction, and motivation before coding begins.",
+    description: "Build a strong foundation in React Native, JavaScript, and mobile development fundamentals.",
     topics: [
       "Fundamentals to Mobile Application",
       "App idea brainstorming",
@@ -22,24 +20,9 @@ const phases = [
       "Expo and Expo Snack",
       "How JavaScript works with React Native",
       "Node.js Environment setup",
-      "Git, GitHub, Reddit, X, Quora, Stack Overflow Introduction"
-    ],
-    deliverables: [
-      "One clear app idea or problem statement",
-      "Simple feature list for your app",
-      "Ready development environment"
-    ]
-  },
-  {
-    phase: 1,
-    title: "Technology Fundamentals",
-    duration: "Weeks 2–3",
-    Icon: Blocks,
-    color: "bg-sky-500",
-    description: "Build a strong foundation and remove confusion about tools and technologies.",
-    topics: [
+      "Git, GitHub, Reddit, X, Quora, Stack Overflow Introduction",
       "React Native Components",
-      "JavaScript (Var, Const, Let, Template literals)",
+      "JavaScript (Var, Const, Let, Template literals, arrays)",
       "Creating Expo App",
       "GitHub CI/CD",
       "React Native Core Components (View, Button, TouchableOpacity, Text, StyleSheet API)",
@@ -59,25 +42,26 @@ const phases = [
       "Expo Drawer navigation"
     ],
     deliverables: [
-      "Understand what each technology does and why it matters",
-      "Have a complete development setup",
-      "Use GitHub to manage your code"
+      "Complete development environment setup",
+      "Strong understanding of React Native fundamentals",
+      "Working GitHub workflow",
+      "Foundation app with navigation and state management"
     ]
   },
   {
     phase: 2,
-    title: "Core Concepts & App Building",
-    duration: "Weeks 1–3",
-    Icon: Brain,
-    color: "bg-sky-500",
+    title: "Second Semester: App Building (Weeks 1-3)",
+    duration: "Weeks 9–11",
+    Icon: Blocks,
+    color: "bg-emerald-500",
     description: "Build the foundation of your news app with UI, state management, and backend integration.",
     topics: [
-      "Project Setup & UI Foundation (Project structure, Expo Router, Basic UI design)",
-      "Scroll & List Rendering (ScrollView vs FlatList, Dynamic list rendering, Image integration)",
-      "Zustand Global State (Global state definition, Store creation, Cross-screen data sharing)",
-      "Firebase Authentication (Signup, Login, Logout flows, Auth state handling)",
-      "Admin Role Detection (Role-based logic, Conditional rendering, Feature visibility control)",
-      "Convex Backend Read (Backend fundamentals, Data fetching from Convex, UI synchronization)"
+      "Week 1: Project Setup & UI Foundation (Project structure, Expo Router, Basic UI design)",
+      "Week 2: Scroll & List Rendering (ScrollView vs FlatList, Dynamic list rendering, Image integration)",
+      "Week 3: Zustand Global State (Global state definition, Store creation, Cross-screen data sharing)",
+      "Week 4: Firebase Authentication (Signup, Login, Logout flows, Auth state handling)",
+      "Week 5: Admin Role Detection (Role-based logic, Conditional rendering, Feature visibility control)",
+      "Week 6: Convex Backend Read (Backend fundamentals, Data fetching from Convex, UI synchronization)"
     ],
     deliverables: [
       "Home screen with news card component",
@@ -90,66 +74,38 @@ const phases = [
   },
   {
     phase: 3,
-    title: "Advanced Features & Data Management",
-    duration: "Weeks 4–6",
+    title: "Second Semester: Advanced Features (Weeks 4-6)",
+    duration: "Weeks 12–14",
     Icon: Wrench,
-    color: "bg-sky-500",
+    color: "bg-teal-500",
     description: "Implement CRUD operations, forms, and monetization features.",
     topics: [
-      "Convex Backend Write Data (Create and delete operations, Admin news addition/deletion)",
-      "Forms & Image Handling (Form inputs, Image handling with URLs or assets)",
-      "AdMob Integration (Banner ads, App monetization principles)",
-      "Environment Variables & AI Tools (.env basics, API key security, Effective AI tool usage)",
-      "App Publishing (APK/AAB build process, Google Play Console setup, Store listing optimization)"
+      "Week 7: Convex Backend Write Data (Create and delete operations, Admin news addition/deletion)",
+      "Week 8: Forms & Image Handling (Form inputs, Image handling with URLs or assets)",
+      "Week 9: AdMob Integration (Banner ads, App monetization principles)"
     ],
     deliverables: [
       "Admin panel for news management",
       "Add News screen with form validation",
-      "AdMob integration in news screen",
-      "Secure configuration with environment variables",
-      "Published app on Google Play Store"
+      "AdMob integration in news screen"
     ]
   },
   {
     phase: 4,
-    title: "AI-Assisted Development & Productivity",
-    duration: "Month 5",
+    title: "Second Semester: Deployment & Launch (Weeks 7-9)",
+    duration: "Weeks 15–17",
     Icon: Zap,
-    color: "bg-sky-500",
-    description: "Leverage AI tools to work faster and smarter.",
+    color: "bg-amber-500",
+    description: "Secure configuration, AI tools, and app publishing to Google Play Store.",
     topics: [
-      "Using free AI tools responsibly",
-      "Writing good prompts",
-      "Debugging and improving code with AI",
-      "Planning features using agentic tools",
-      "UI/UX inspiration sources",
-      "Component libraries and starter projects"
+      "Week 10: Environment Variables + AI Tools (.env basics, API key security, Effective AI tool usage)",
+      "Week 11-12: App Publishing (APK/AAB build process, Google Play Console setup, Store listing optimization)"
     ],
     deliverables: [
-      "Work faster without losing understanding",
-      "Design cleaner app interfaces",
-      "Improve productivity and confidence"
-    ]
-  },
-  {
-    phase: 5,
-    title: "Product Thinking, Monetization & Launch",
-    duration: "Month 6",
-    Icon: TrendingUp,
-    color: "bg-sky-500",
-    description: "Finalize your app and prepare for real-world launch.",
-    topics: [
-      "Market research using AppBrain",
-      "Competitor analysis",
-      "Monetization basics (ads, subscriptions, freemium)",
-      "Performance optimization",
-      "Security awareness",
-      "Launch strategy"
-    ],
-    deliverables: [
-      "Publish or prepare your app for release",
-      "Understand how apps make money",
-      "Plan next improvements"
+      "Secure configuration with environment variables",
+      "Debugging with AI assistance",
+      "Published app on Google Play Store",
+      "App Store Optimization (ASO)"
     ]
   }
 ];
@@ -157,102 +113,62 @@ const phases = [
 const monthlyOutcomes = [
   {
     month: 1,
-    title: "Foundations",
+    title: "First Semester: Foundations",
     items: [
-      "Development environment ready",
-      "GitHub workflow set",
-      "App idea defined and validated"
+      "Development environment ready (Node.js, Expo, Git)",
+      "GitHub workflow set with CI/CD",
+      "App idea defined and validated",
+      "React Native fundamentals mastered",
+      "JavaScript basics (Var, Const, Let, arrays, functions)"
     ]
   },
   {
     month: 2,
-    title: "Core Skills",
+    title: "First Semester: Core Skills",
     items: [
-      "Basic app screens built",
-      "Strong understanding of fundamentals",
-      "First version of app UI"
+      "React Native components and styling mastered",
+      "State management (useState, useEffect, useContext)",
+      "Navigation with Expo Router implemented",
+      "Third-party packages integration",
+      "Local build and deployment basics"
     ]
   },
   {
     month: 3,
-    title: "Features",
+    title: "Second Semester: App Building",
     items: [
-      "App connected to backend/Firebase",
-      "Authentication and data storage",
-      "Navigation implemented"
+      "Project structure and UI foundation complete",
+      "News feed with scrolling and list rendering",
+      "Zustand global state management implemented",
+      "Firebase authentication (Login/Signup)",
+      "Admin role detection and conditional rendering",
+      "Convex backend integration for data fetching"
     ]
   },
   {
     month: 4,
-    title: "Production Readiness",
+    title: "Second Semester: Advanced & Launch",
     items: [
-      "Correct workflow selected",
-      "App configured for production",
-      "Publishing process understood"
-    ]
-  },
-  {
-    month: 5,
-    title: "AI & Productivity",
-    items: [
-      "Faster development with AI",
-      "Improved UI/UX",
-      "Feature refinement"
-    ]
-  },
-  {
-    month: 6,
-    title: "Launch & Growth",
-    items: [
-      "App published or ready",
-      "Monetization plan defined",
-      "Portfolio-ready project",
-      "Clear next career steps"
+      "Admin panel for news management (CRUD)",
+      "Forms and image handling implemented",
+      "AdMob banner ads integrated",
+      "Environment variables and AI tools setup",
+      "App published on Google Play Store",
+      "App Store Optimization (ASO) completed"
     ]
   }
 ];
 
 export default function Syllabus() {
-  const router = useRouter();
-  const { data: session, isPending } = authClient.useSession();
   const [mounted, setMounted] = useState(false);
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!isPending && !session) {
-      router.push("/auth/signin");
-    } else if (session) {
-      setMounted(true);
-    }
-  }, [session, isPending, router]);
-
-  if (isPending || !session) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    setMounted(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation Header */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50">
-        <div className="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition-colors">
-            <Rocket className="w-6 h-6 text-blue-600" />
-            Yo-Tech Dashboard
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-              Dashboard
-            </Link>
-            <button
-              onClick={async () => {
-                await authClient.signOut();
-                router.push("/auth/signin");
-              }}
-              className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Header */}
       <div className="relative overflow-hidden border-b border-gray-200/50">
@@ -390,6 +306,134 @@ export default function Syllabus() {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Key Features */}
+      <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-12 flex items-center gap-3">
+          <Target className="w-8 h-8 text-blue-600" /> Key Features
+        </h2>
+
+        <div className="space-y-8">
+          {/* User Features */}
+          <div className={`bg-sky-50 border border-blue-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Eye className="w-6 h-6 text-blue-600" /> User Features
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-blue-500 font-bold mt-0.5">•</span>
+                <span><strong>News Article Viewing:</strong> Users can browse and read news articles within the application.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-blue-500 font-bold mt-0.5">•</span>
+                <span><strong>News Feed Scrolling:</strong> A seamless scrolling experience for navigating through the news feed.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Admin Features */}
+          <div className={`bg-emerald-50 border border-emerald-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Wrench className="w-6 h-6 text-emerald-600" /> Admin Features
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                <span><strong>News Article Management:</strong> Administrators possess the capability to add new news articles.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                <span><strong>News Article Deletion:</strong> Administrators can remove existing news articles from the platform.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Authentication */}
+          <div className={`bg-amber-50 border border-amber-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <CheckCircle2 className="w-6 h-6 text-amber-600" /> Authentication
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-amber-500 font-bold mt-0.5">•</span>
+                <span><strong>Login/Signup:</strong> Secure user authentication through login and registration functionalities.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-amber-500 font-bold mt-0.5">•</span>
+                <span><strong>Role Detection:</strong> Automatic detection of user roles (admin/standard user) based on email.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Backend */}
+          <div className={`bg-teal-50 border border-teal-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Brain className="w-6 h-6 text-teal-600" /> Backend
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-teal-500 font-bold mt-0.5">•</span>
+                <span><strong>Convex Integration:</strong> News data is securely stored and managed within the Convex backend.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-teal-500 font-bold mt-0.5">•</span>
+                <span><strong>Real-time Sync:</strong> Ensures that data updates are reflected instantly across the application.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* State Management */}
+          <div className={`bg-violet-50 border border-violet-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Zap className="w-6 h-6 text-violet-600" /> State Management
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-violet-500 font-bold mt-0.5">•</span>
+                <span><strong>Zustand:</strong> Utilizes Zustand for efficient and scalable global state management throughout the application.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-violet-500 font-bold mt-0.5">•</span>
+                <span><strong>Performance:</strong> Minimal re-renders and clean store architecture.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Monetization */}
+          <div className={`bg-rose-50 border border-rose-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <TrendingUp className="w-6 h-6 text-rose-600" /> Monetization
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>AdMob Banner Ads:</strong> Integration of AdMob banner advertisements to facilitate revenue generation.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-rose-500 font-bold mt-0.5">•</span>
+                <span><strong>Strategic Placement:</strong> Balancing revenue with optimal user experience.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Deployment */}
+          <div className={`bg-green-50 border border-green-200/50 rounded-xl p-6 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Rocket className="w-6 h-6 text-green-600" /> Deployment
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-green-500 font-bold mt-0.5">•</span>
+                <span><strong>Google Play Store:</strong> The final application will be published and made available on the Google Play Store.</span>
+              </li>
+              <li className="flex items-start gap-3 text-gray-700">
+                <span className="text-green-500 font-bold mt-0.5">•</span>
+                <span><strong>ASO:</strong> App Store Optimization for better discoverability.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

@@ -46,10 +46,12 @@ export default function Success() {
             </p>
             
             <div className="space-y-3.5">
-              <Button3D className="font-bold gap-2 w-full">
-                <FaBookOpen />
-                View Course Syllabus
-              </Button3D>
+              <Link href="/syllabus">
+                <Button3D className="font-bold gap-2 w-full">
+                  <FaBookOpen />
+                  View Course Syllabus
+                </Button3D>
+              </Link>
               
               <Link 
                 href="/"
