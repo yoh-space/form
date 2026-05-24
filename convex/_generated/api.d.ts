@@ -12,6 +12,7 @@ import type * as activities from "../activities.js";
 import type * as auth from "../auth.js";
 import type * as enrollments from "../enrollments.js";
 import type * as http from "../http.js";
+import type * as migration from "../migration.js";
 import type * as progress from "../progress.js";
 import type * as syllabus from "../syllabus.js";
 
@@ -26,6 +27,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   enrollments: typeof enrollments;
   http: typeof http;
+  migration: typeof migration;
   progress: typeof progress;
   syllabus: typeof syllabus;
 }>;
