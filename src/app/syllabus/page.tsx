@@ -494,7 +494,7 @@ export default function Syllabus() {
       <div className="border-t border-gray-200/50 bg-gray-50/50">
         <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 text-center text-gray-600 text-sm">
           <p>
-            Powered by <a href="https://yotech.space" target="_blank" rel="noopener" className="text-blue-600 hover:underline font-medium">Yo-Tech Solution</a>
+            Powered by <a href="https://yotechdigtal.space" target="_blank" rel="noopener" className="text-blue-600 hover:underline font-medium">Yo-Tech Solution</a>
           </p>
         </div>
       </div>

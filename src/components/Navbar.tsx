@@ -22,7 +22,7 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* Glowing Logo */}
-        <a href="https://yotech.space" target="_blank" rel="noopener" className="flex items-center gap-3.5 group">
+        <a href="https://yotechdigtal.space" target="_blank" rel="noopener" className="flex items-center gap-3.5 group">
           <img 
             src="/yotechlogo.png" 
             alt="Yotech Digitals Logo" 

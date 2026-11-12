@@ -18,9 +18,9 @@ export default function Footer() {
             <p className="text-slate-200 text-xs md:text-sm mb-6 leading-relaxed">
               Check live user applications, software products, and verified student testimonials on our official digital portfolio space.
             </p>
-            <a href="https://yotech.space" target="_blank" rel="noopener noreferrer">
+            <a href="https://yotechdigtal.space" target="_blank" rel="noopener noreferrer">
               <Button3D className="font-extrabold gap-2">
-                Visit yotech.space
+                Visit yotechdigtal.space
                 <FaArrowUpRightFromSquare className="text-xs" />
               </Button3D>
             </a>
@@ -42,8 +42,8 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center gap-6 text-xs font-bold text-slate-500 uppercase tracking-wider">
-            <a href="https://yotech.space" target="_blank" rel="noopener" className="hover:text-teal-400 transition-colors flex items-center gap-1.5">
-              <FaGlobe /> yotech.space
+            <a href="https://yotechdigtal.space" target="_blank" rel="noopener" className="hover:text-teal-400 transition-colors flex items-center gap-1.5">
+              <FaGlobe /> yotechdigtal.space
             </a>
             <span>•</span>
             <span className="normal-case text-slate-600 font-medium">© {new Date().getFullYear()} Yotech Digitals</span>

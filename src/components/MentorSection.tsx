@@ -182,7 +182,7 @@ export default function MentorSection() {
                 </a>
 
                 <a 
-                  href="https://yotech.space" 
+                  href="https://yotechdigtal.space" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-4 bg-slate-950/40 border border-slate-900 rounded-2xl flex items-center gap-3.5 hover:border-emerald-500/20 transition-all duration-300"
@@ -193,7 +193,7 @@ export default function MentorSection() {
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Yotech Website</span>
                     <span className="text-xs font-semibold text-slate-200 flex items-center gap-1 hover:text-white">
-                      yotech.space <FaArrowUpRightFromSquare className="text-[9px] text-slate-500" />
+                      yotechdigtal.space <FaArrowUpRightFromSquare className="text-[9px] text-slate-500" />
                     </span>
                   </div>
                 </a>

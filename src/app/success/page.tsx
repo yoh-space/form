@@ -62,20 +62,20 @@ export default function Success() {
               </Link>
               
               <a 
-                href="https://yotech.space"
+                href="https://yotechdigtal.space"
                 target="_blank"
                 rel="noopener"
                 className="group flex items-center justify-center gap-2 w-full bg-slate-950/60 border border-slate-900 hover:bg-slate-900/60 hover:border-slate-850 text-slate-400 hover:text-slate-300 px-6 py-3.5 rounded-xl text-xs md:text-sm font-bold transition-all duration-300 hover:-translate-y-0.5"
               >
                 <FaGlobe />
-                Visit yotech.space
+                Visit yotechdigtal.space
               </a>
             </div>
           </div>
         </div>
 
         <p className={`mt-8 text-slate-500 text-xs font-semibold tracking-wider uppercase transition-all duration-700 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-          Powered by <a href="https://yotech.space" target="_blank" rel="noopener" className="text-teal-400 hover:text-teal-300 transition-colors">Yotech Digitals</a>
+          Powered by <a href="https://yotechdigtal.space" target="_blank" rel="noopener" className="text-teal-400 hover:text-teal-300 transition-colors">Yotech Digitals</a>
         </p>
       </div>
     </div>

@@ -243,7 +243,7 @@ export default function EnrollmentForm() {
                 <p className="text-slate-400 text-xs leading-relaxed">Please provide your authentic details. We coordinate primarily on Telegram.</p>
                 <div className="grid md:grid-cols-2 gap-5">
                   <Input label="Full Name *" value={form.fullName} onChange={v => updateForm("fullName", v)} placeholder="Yohannes Damtie" error={errors.fullName} onBlur={() => handleFieldBlur("fullName", form.fullName)} />
-                  <Input label="Email Address *" type="email" value={form.email} onChange={v => updateForm("email", v)} placeholder="yohannes@yotech.space" error={errors.email} onBlur={() => handleFieldBlur("email", form.email)} />
+                  <Input label="Email Address *" type="email" value={form.email} onChange={v => updateForm("email", v)} placeholder="yohannes@yotechdigtal.space" error={errors.email} onBlur={() => handleFieldBlur("email", form.email)} />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
                   <Input label="Telegram Username *" value={form.telegramUsername} onChange={v => updateForm("telegramUsername", v)} placeholder="@yotech_support" error={errors.telegramUsername} onBlur={() => handleFieldBlur("telegramUsername", form.telegramUsername)} />

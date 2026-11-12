@@ -56,7 +56,7 @@ export default function Hero() {
             </a>
 
             <a 
-              href="https://yotech.space" 
+              href="https://yotechdigtal.space" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group p-4 bg-slate-900/40 backdrop-blur-md border border-slate-800/80 rounded-2xl flex flex-col gap-2 hover:border-amber-500/30 transition-all duration-300 hover:bg-slate-900/60"
@@ -79,7 +79,7 @@ export default function Hero() {
             </Button3D>
             
             <a 
-              href="https://yotech.space/#testimonials" 
+              href="https://yotechdigtal.space/#testimonials" 
               target="_blank" 
               rel="noopener" 
               className="inline-flex items-center justify-center gap-2 bg-slate-900/60 backdrop-blur-md text-slate-300 px-8 py-4 rounded-xl font-semibold border border-slate-800 hover:border-slate-700 hover:text-white transition-all duration-300 hover:-translate-y-0.5"

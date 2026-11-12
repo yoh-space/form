@@ -11,7 +11,7 @@ The current implementation is built with Next.js 16, React 19, and Tailwind CSS 
 - **Mentor**: Yohannes Damtie - Full Stack Web and Mobile App Developer
 - **Company**: Yotech Digitals
 - **Google Play Developer Account**: https://play.google.com/store/apps/dev?id=6112063894787389964
-- **Website**: www.yotech.space (visit to check recent products and student testimonials/feedback)
+- **Website**: www.yotechdigtal.space (visit to check recent products and student testimonials/feedback)
 
 The design should reflect the professional expertise and credibility of Yotech Digitals while maintaining a modern, approachable aesthetic that appeals to aspiring developers.
 
